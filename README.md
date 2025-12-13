@@ -1,6 +1,4 @@
-# 📘 AZ-104 – Microsoft Azure Administrator
-
-Apuntes personales y material docente para el examen AZ-104.
+Apuntes personales y material docente para el examen **AZ-104 – Microsoft Azure Administrator**.
 
 ---
 
@@ -22,3 +20,31 @@ Apuntes personales y material docente para el examen AZ-104.
 - [05 – Compute](05-compute/)
 - [06 – Monitoring & Backup](06-monitoring-backup/)
 - [Labs](labs/)
+
+---
+
+## 🧪 Labs (Práctica)
+- **Microsoft Learn AZ-104 Labs (oficiales):**  
+  https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/
+
+- **Azure Sandbox – Práctica sin costo:**  
+  https://learn.microsoft.com/azure/architecture/guide/azure-sandbox/azure-sandbox  
+  https://github.com/Azure-Samples/azuresandbox
+
+---
+
+## 📘 Learning Resources – Docs
+- **Certification exam preparation by Azure:**  
+  https://learn.microsoft.com/credentials/certifications/azure-administrator/
+
+---
+
+## 📝 Practice Exams
+- **Tutorials Dojo – AZ-104 Practice Exams:**  
+  https://tutorialsdojo.com/courses/az-104-microsoft-azure-administrator-practice-exams/
+
+---
+
+## 🏗️ Azure Architecture Center
+- **Azure Architecture Center:**  
+  https://learn.microsoft.com/azure/architecture/
