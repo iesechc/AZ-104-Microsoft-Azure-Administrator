@@ -14,7 +14,7 @@ Apuntes personales y material docente para el examen **AZ-104 – Microsoft Azur
 
 ## 📂 Contenido
 - [01 – Prerequisites](01-prerequisites/)
-- [02 – Identities and Governance](02–Identities and Governance/)
+- [02 – Identities and Governance](02–Identities%20and%20Governance)
 - [03 – Virtual Networks](03-virtual-networks/)
 - [04 – Storage](04-storage/)
 - [05 – Compute](05-compute/)
