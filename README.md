@@ -33,6 +33,9 @@ Apuntes personales y material docente para el examen **AZ-104 – Microsoft Azur
 - **Tutorials Dojo – AZ-104 Practice Exams:**  
   https://tutorialsdojo.com/courses/az-104-microsoft-azure-administrator-practice-exams/
 
+- **Whizlabs – AZ-104 Practice Exams:**  
+  https://www.whizlabs.com/microsoft-azure-certification-az-104/
+
 ---
 
 ## 🏗️ Azure Architecture Center
