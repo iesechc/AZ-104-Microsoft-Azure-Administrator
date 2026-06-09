@@ -1,0 +1,78 @@
+# Notas de Microsoft Entra ID
+## Introducción a Microsoft Entra ID
+**Microsoft Entra ID** es el servicio de administración de identidad y acceso basado en la nube proporcionado por Microsoft. Es una solución completa para administrar identidades, aplicar directivas de acceso y proteger las aplicaciones y los datos tanto en la nube como en entornos locales.
+**Objetivos principales de estas notas:**
+ * Entender qué es Microsoft Entra ID.
+ * Comparar Microsoft Entra ID con Active Directory Domain Services (AD DS).
+ * Entender su uso como directorio para aplicaciones en la nube.
+ * Conocer las diferencias entre los planes P1 y P2.
+ * Describir Microsoft Entra Domain Services.
+## Conceptos Básicos
+### ¿Qué es Microsoft Entra ID?
+A diferencia de **AD DS** (que se ejecuta como un servicio en Windows Server para redes locales), Microsoft Entra ID forma parte de la oferta de **Plataforma como Servicio (PaaS)**. Funciona como un servicio de directorio en la nube administrado por Microsoft, lo que elimina la necesidad de dedicar recursos a su infraestructura o mantenimiento.
+Proporciona características que no están nativas en AD DS, tales como:
+ * Compatibilidad con Autenticación Multifactor (MFA).
+ * Protección de identidades.
+ * Autoservicio de restablecimiento de contraseña.
+### Casos de Uso
+Puede usarse para proporcionar acceso seguro mediante:
+ * Configuración de acceso y de Inicio de Sesión Único (SSO) a aplicaciones web y SaaS.
+ * Administración y aprovisionamiento de usuarios y grupos.
+ * Federación entre organizaciones.
+ * Identificación de actividades de inicio de sesión irregulares.
+ * Ampliación de Active Directory local a la nube (usando Microsoft Entra Connect).
+ * Configuración de acceso condicional para usuarios y dispositivos.
+> **Nota:** Por defecto, al crear una nueva suscripción de Azure, esta incluye automáticamente un nuevo inquilino gratuito de Microsoft Entra denominado *Directorio predeterminado*.
+> 
+### Inquilinos (Tenants)
+Microsoft Entra ID es **multiinquilino** por diseño, garantizando aislamiento entre instancias.
+ * **Inquilino:** Representa una instancia individual de Microsoft Entra (asociada a una organización).
+ * Una suscripción de Azure debe estar asociada a un (y solo un) inquilino de Microsoft Entra para aplicar control de acceso (RBAC). Sin embargo, un mismo inquilino puede administrar múltiples suscripciones de Azure.
+ * El nombre de dominio inicial usa el sufijo onmicrosoft.com, pero se pueden agregar dominios personalizados.
+### Esquema
+ * **Sin jerarquías locales:** No usa Unidades Organizativas (UO) ni Objetos de Directiva de Grupo (GPO). Los objetos se organizan mediante pertenencia a grupos en una estructura plana.
+ * **Sin objetos de equipo tradicionales:** Aunque no incluye la clase de equipo tradicional de AD DS, sí incluye una clase de *dispositivo* para administración moderna.
+ * **Aplicaciones:** Se dividen en la definición global de la aplicación (Application) y la instancia local en el inquilino actual (servicePrincipal).
+## Comparación: Microsoft Entra ID vs. AD DS
+Aunque comparten objetivos de identidad, sus arquitecturas están diseñadas para entornos distintos.
+| Característica | Active Directory Domain Services (AD DS) | Microsoft Entra ID |
+|---|---|---|
+| **Entorno Principal** | Redes locales, implementado en servidores (físicos o máquinas virtuales). | Aplicaciones en la nube/Internet (PaaS multiinquilino). |
+| **Estructura** | Jerárquica basada en X.500. | Estructura plana (usuarios, grupos, dispositivos). |
+| **Administración** | Unidades Organizativas (UO) y Directivas de Grupo (GPO). | Administración moderna, asignación basada en grupos, Intune. |
+| **Protocolos de Autenticación** | Kerberos y NTLM. | HTTP/HTTPS (SAML, WS-Federation, OpenID Connect, OAuth). |
+| **Consultas** | Protocolo LDAP. | API REST a través de HTTP/HTTPS. |
+| **Federación** | Requiere servicios adicionales (AD FS). | Servicios de federación integrados de forma nativa. |
+## Microsoft Entra ID para Aplicaciones en la Nube
+Los servicios en la nube (Microsoft 365, Intune, Azure) necesitan un directorio para autenticación. En lugar de crear un directorio aislado para cada servicio, Microsoft Entra ID actúa como un **servicio de identidad centralizado**.
+ * Proporciona Inicio de Sesión Único (SSO) para aplicaciones de Microsoft y de terceros.
+ * Permite asegurar aplicaciones web personalizadas alojadas en Azure App Service, garantizando que solo los usuarios del inquilino designado puedan acceder.
+## Comparación de Planes: P1 vs. P2
+Las versiones de pago ofrecen características avanzadas de administración y seguridad.
+### Plan Microsoft Entra ID P1
+Incluye todas las características gratuitas, más:
+ * **Administración de grupos de autoservicio:** Los usuarios pueden crear grupos o solicitar unirse a ellos.
+ * **Informes avanzados:** Alertas de seguridad basadas en aprendizaje automático y detección de anomalías.
+ * **Autenticación Multifactor (MFA) completa:** Integración con aplicaciones locales, VPNs, RADIUS y aplicaciones de terceros.
+ * **Microsoft Identity Manager (MIM):** Soluciones de identidad híbrida.
+ * **SLA empresarial:** Disponibilidad garantizada del **99,9%**.
+ * **Restablecimiento de contraseña con escritura diferida:** Sincronización del restablecimiento de contraseñas hacia el Active Directory local.
+ * **Acceso Condicional:** Basado en dispositivo, grupo, ubicación o riesgo.
+ * **Microsoft Entra Connect Health:** Supervisión operativa de la infraestructura de identidad.
+### Plan Microsoft Entra ID P2
+Incluye todo lo del P1, y añade herramientas de protección proactiva:
+ * **Protección de Identidades (Identity Protection):** Supervisión mejorada que permite automatizar respuestas basadas en riesgo de usuario o de inicio de sesión.
+ * **Privileged Identity Management (PIM):** Administración de roles con privilegios (acceso "Just-In-Time", aprobaciones, revisiones de acceso y límites de tiempo para administradores).
+## Microsoft Entra Domain Services
+Cuando se migran aplicaciones de línea de negocio (LOB) heredadas a Azure, a menudo dependen de protocolos tradicionales (LDAP, Kerberos, NTLM) y no soportan la autenticación moderna de Entra ID.
+**¿Qué es?**
+Es un servicio administrado que proporciona características de dominio tradicional (unión a dominios, GPO, Kerberos) directamente desde Microsoft Entra, sin necesidad de implementar máquinas virtuales que actúen como controladores de dominio.
+**Ventajas:**
+ * Cero mantenimiento de infraestructura: No hay que actualizar, parchear ni replicar controladores de dominio.
+ * Sincronización transparente con el AD DS local (a través de Microsoft Entra Connect) o puede usarse en entornos 100% nube.
+ * Permite la migración "Lift-and-Shift" de aplicaciones heredadas hacia Azure IaaS.
+**Limitaciones Actuales:**
+ * Solo admite el objeto de Active Directory del equipo base.
+ * No se puede ampliar el esquema del dominio.
+ * La estructura organizativa es plana (no se admiten UO anidadas).
+ * Usa GPOs integrados (no se admiten filtros WMI o de grupos de seguridad personalizados de la misma manera que en local).
