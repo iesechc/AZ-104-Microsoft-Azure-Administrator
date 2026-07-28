@@ -16,6 +16,7 @@ Apuntes personales y material docente para el examen **AZ-104 – Microsoft Azur
 ## 🧪 Labs (Práctica)
 - **Microsoft Learn AZ-104 Labs (oficiales):**  
   https://microsoftlearning.github.io/AZ-104-MicrosoftAzureAdministrator/
+  https://msle.learnondemand.net
 
 - **Azure Sandbox:**  
   https://learn.microsoft.com/azure/architecture/guide/azure-sandbox/azure-sandbox  
